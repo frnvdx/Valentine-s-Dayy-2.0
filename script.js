@@ -8,7 +8,8 @@ const letterPage = document.getElementById("letter-page");
 
 envelope.addEventListener("click", () => {
 
-    envelope.classList.add("open");
+    envelope.style.transform = "scale(1.1)";
+    envelope.style.opacity = "0";
 
     setTimeout(() => {
 
