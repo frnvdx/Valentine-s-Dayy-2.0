@@ -1,0 +1,512 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#FCE4EC;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* =========================
+   TELA INICIAL
+========================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #7A0026,
+        #C2185B,
+        #F06292
+    );
+
+    z-index:9999;
+
+    transition:1s ease;
+}
+
+#intro.hidden{
+    opacity:0;
+    visibility:hidden;
+}
+
+#envelope-container{
+    text-align:center;
+    padding:20px;
+}
+
+/* =========================
+   ENVELOPE
+========================= */
+
+#envelope{
+    width:220px;
+    height:150px;
+
+    position:relative;
+
+    margin:auto;
+
+    cursor:pointer;
+
+    animation:float 3s ease-in-out infinite;
+}
+
+.letter{
+    position:absolute;
+
+    width:180px;
+    height:120px;
+
+    background:white;
+
+    left:20px;
+    top:15px;
+
+    border-radius:8px;
+
+    z-index:1;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    transition:1s;
+}
+
+#envelope::before{
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:white;
+
+    clip-path:polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    border-radius:8px;
+
+    z-index:3;
+}
+
+.flap{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:#fff;
+
+    clip-path:polygon(
+        0 0,
+        50% 55%,
+        100% 0
+    );
+
+    transform-origin:top;
+
+    z-index:4;
+
+    transition:1s;
+}
+
+/* envelope aberto */
+
+#envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+#envelope.open .letter{
+    transform:translateY(-90px);
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+.intro-text{
+    margin-top:40px;
+
+    color:white;
+
+    font-size:1rem;
+
+    line-height:1.7;
+
+    max-width:280px;
+}
+
+/* =========================
+   CARTA
+========================= */
+
+#letter-page{
+    display:none;
+
+    padding:40px 18px 60px;
+}
+
+#letter-page.show{
+    display:block;
+    animation:fadeIn 1.5s ease;
+}
+
+.paper{
+    max-width:420px;
+
+    margin:auto;
+
+    background:#FFF8F2;
+
+    border-radius:28px;
+
+    padding:28px 20px 40px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.12);
+
+    position:relative;
+}
+
+.paper h1{
+    font-family:'Great Vibes', cursive;
+
+    text-align:center;
+
+    color:#880E4F;
+
+    font-size:4rem;
+
+    margin-bottom:20px;
+}
+
+/* =========================
+   CARROSSEL
+========================= */
+
+.carousel{
+    width:100%;
+}
+
+.slides{
+    position:relative;
+
+    width:100%;
+    height:350px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+}
+
+.slide{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+
+    transition:opacity 1s ease;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.indicators{
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:15px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#d7a7ba;
+
+    transition:.4s;
+}
+
+.dot.active{
+    background:#C2185B;
+
+    transform:scale(1.2);
+}
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.message{
+    margin-top:30px;
+
+    text-align:center;
+
+    color:#5c2c39;
+
+    line-height:1.9;
+
+    font-size:1rem;
+}
+
+/* =========================
+   CONTADOR
+========================= */
+
+.counter-section{
+    margin-top:45px;
+
+    text-align:center;
+}
+
+.counter-section h2{
+    color:#880E4F;
+
+    margin-bottom:25px;
+
+    font-size:1.7rem;
+}
+
+.counter-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.time-card{
+    background:white;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+}
+
+.time-card span{
+    display:block;
+
+    font-size:2rem;
+
+    font-weight:600;
+
+    color:#C2185B;
+}
+
+.time-card small{
+    color:#666;
+}
+
+/* último card centralizado */
+
+.time-card:last-child{
+    grid-column:span 2;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.love-section{
+    margin-top:40px;
+
+    text-align:center;
+}
+
+#loveBtn{
+    border:none;
+
+    background:linear-gradient(
+        135deg,
+        #E91E63,
+        #F06292
+    );
+
+    color:white;
+
+    padding:16px 35px;
+
+    border-radius:50px;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 25px rgba(233,30,99,.35);
+
+    transition:.3s;
+}
+
+#loveBtn:hover{
+    transform:translateY(-3px);
+}
+
+#loveBtn:active{
+    transform:scale(.96);
+}
+
+/* =========================
+   ASSINATURA
+========================= */
+
+.signature{
+    text-align:center;
+
+    margin-top:40px;
+}
+
+.signature p{
+    color:#555;
+}
+
+.signature h3{
+    margin-top:8px;
+
+    font-size:2.2rem;
+
+    color:#880E4F;
+
+    font-family:'Great Vibes', cursive;
+}
+
+/* =========================
+   CORAÇÕES
+========================= */
+
+#hearts-container{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:999;
+}
+
+.heart{
+    position:absolute;
+
+    bottom:-30px;
+
+    color:#E91E63;
+
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-120vh)
+            translateX(50px)
+            scale(1.8);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   TABLET E DESKTOP
+========================= */
+
+@media(min-width:768px){
+
+    .paper{
+        max-width:700px;
+        padding:40px;
+    }
+
+    .paper h1{
+        font-size:5rem;
+    }
+
+    .slides{
+        height:500px;
+    }
+
+    .counter-grid{
+        grid-template-columns:
+        repeat(5,1fr);
+    }
+
+    .time-card:last-child{
+        grid-column:auto;
+    }
+}
